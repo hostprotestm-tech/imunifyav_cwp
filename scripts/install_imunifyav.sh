@@ -87,7 +87,7 @@ install_imunifyav() {
     
     # Install ImunifyAV Free
     print_info "Installing ImunifyAV Free (this may take a few minutes)..."
-    bash imav-deploy.sh --license-free
+    bash imav-deploy.sh
     
     # Check installation status
     if command -v imunify-antivirus &> /dev/null; then

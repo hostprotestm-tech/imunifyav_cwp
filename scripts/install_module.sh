@@ -74,7 +74,7 @@ install_imunifyav() {
         cd /tmp
         wget -q https://repo.imunify360.cloudlinux.com/defence360/imav-deploy.sh -O imav-deploy.sh
         chmod +x imav-deploy.sh
-        bash imav-deploy.sh --license-free
+        bash imav-deploy.sh
         
         if command -v imunify-antivirus &> /dev/null; then
             print_success "ImunifyAV installed successfully"
