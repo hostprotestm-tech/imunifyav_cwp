@@ -1,279 +1,262 @@
 # ImunifyAV Module for CentOS Web Panel (CWP)
 
-## Опис проекту
+<div align="center">
 
-Повноцінний модуль для інтеграції безкоштовної версії ImunifyAV в CentOS Web Panel. Модуль надає зручний веб-інтерфейс для управління антивірусним сканером безпосередньо з панелі керування CWP.
+**Professional malware scanner integration for CentOS Web Panel**
 
-## Основні можливості
+[Features](#-features) • [Installation](#-quick-installation) • [Documentation](#-documentation) • [API](#-api) • [Support](#-support)
 
-### 🔍 Сканування
-- **Quick Scan** - швидке сканування критичних областей
-- **Full Scan** - повне глибоке сканування
-- **Custom Scan** - сканування конкретних каталогів
-- Відображення прогресу сканування в реальному часі
-- Детальні звіти про знайдені загрози
+</div>
 
-### 📋 Управління загрозами
-- Очищення інфікованих файлів
-- Поміщення файлів в карантин
-- Видалення небезпечних файлів
-- Ігнорування хибнопозитивних результатів
+## 🚀 Quick Installation
 
-### ⚪ Білий список
-- Додавання файлів/каталогів до білого списку
-- Видалення записів з білого списку
-- Автоматичне виключення зі сканування
+### One-Line Installer
 
-### 📅 Планування сканувань
-- Щоденні автоматичні сканування
-- Щотижневі сканування
-- Щомісячні сканування
-- Налаштування часу запуску
-
-### 📊 Звіти
-- Збереження історії всіх сканувань
-- Експорт звітів в текстовому форматі
-- Детальна інформація про кожне сканування
-- Статистика по інфікованим файлам
-
-## Структура файлів
-
-```
-imunifyav-cwp-module/
-├── install_imunifyav.sh           # Скрипт встановлення ImunifyAV
-├── install_module.sh               # Повний автоматичний установник
-├── imunifyav.php                   # Основний модуль
-├── ajax_imunifyav.php              # AJAX обробник
-├── 3rdparty.php                    # Інтеграція в меню
-├── language/
-│   ├── en/
-│   │   └── imunifyav.ini          # Англійська локалізація
-│   └── uk/
-│       └── imunifyav.ini          # Українська локалізація
-├── INSTALL.md                      # Інструкція з встановлення
-└── README.md                       # Цей файл
-```
-
-## Швидке встановлення
-
-### Автоматичне встановлення (рекомендовано)
+Run this command as root on your CWP server:
 
 ```bash
-# Завантажте та запустіть повний установник
-cd /tmp
-wget https://your-repo.com/install_module.sh
-chmod +x install_module.sh
-./install_module.sh
+wget -O - https://raw.githubusercontent.com/hostprotestm-tech/imunifyav_cwp/main/install.sh | bash
 ```
 
-Скрипт автоматично:
-- Встановить ImunifyAV Free
-- Створить всі необхідні файли модуля
-- Додасть модуль в меню CWP
-- Налаштує права доступу
-- Перезапустить CWP
-
-### Ручне встановлення
-
-Дивіться файл [INSTALL.md](INSTALL.md) для покрокової інструкції.
-
-## Використання
-
-### Доступ до модуля
-
-1. Відкрийте браузер та перейдіть:
-   ```
-   http://YOUR_SERVER_IP:2030
-   ```
-
-2. Увійдіть з обліковими даними адміністратора CWP
-
-3. В меню знайдіть: **Security → ImunifyAV Scanner**
-
-### Запуск сканування
-
-1. Виберіть каталог для сканування або використайте швидкі кнопки:
-   - `/home` - домашні каталоги користувачів
-   - `/var/www` - веб-каталоги
-   - `/tmp` - тимчасові файли
-   - `/usr/local/cwpsrv` - файли CWP
-
-2. Натисніть **Quick Scan** для швидкої перевірки або **Full Scan** для повного сканування
-
-3. Дочекайтесь завершення сканування
-
-4. Перегляньте результати та виконайте необхідні дії з інфікованими файлами
-
-### Планування автоматичних сканувань
-
-1. Перейдіть на вкладку **Scheduled Scans**
-
-2. Вкажіть:
-   - Шлях для сканування
-   - Частоту (щодня/щотижня/щомісяця)
-   - Час запуску
-
-3. Натисніть **Save Schedule**
-
-### Експорт звітів
-
-1. Перейдіть на вкладку **Scan Reports**
-2. Знайдіть потрібний звіт
-3. Натисніть **Export** для завантаження
-
-## Технічні вимоги
-
-- CentOS Web Panel (CWP)
-- AlmaLinux 8 або AlmaLinux 9
-- PHP 7.2+
-- Root доступ
-- Мінімум 1GB RAM
-- 2GB вільного місця на диску
-
-## API та CLI команди
-
-### Основні команди ImunifyAV
+Or if you prefer to review the script first:
 
 ```bash
-# Перевірка версії
-imunify-antivirus version
+wget https://raw.githubusercontent.com/hostprotestm-tech/imunifyav_cwp/main/install.sh
+chmod +x install.sh
+./install.sh
+```
 
-# Запуск сканування
+That's it! The installer will:
+- ✅ Install ImunifyAV Free
+- ✅ Set up the CWP module
+- ✅ Configure automatic updates
+- ✅ Generate API key
+- ✅ Set up all permissions
+
+## ✨ Features
+
+### 🔍 Malware Scanning
+- **Quick Scan** - Fast scanning of critical areas
+- **Full Scan** - Comprehensive system scanning
+- **Custom Scan** - Scan specific directories
+- **Real-time Progress** - Live scan progress tracking
+
+### 🛡️ Threat Management
+- Clean infected files
+- Quarantine dangerous files
+- Whitelist management
+- Detailed threat reports
+
+### 📅 Automation
+- Scheduled scans (daily/weekly/monthly)
+- Automatic database updates
+- Email notifications (optional)
+- REST API for integration
+
+### 📊 Dashboard
+- Real-time statistics
+- Threat trends visualization
+- System health monitoring
+- Recent activity tracking
+
+### 🌐 Multi-language Support
+- English
+- Ukrainian
+- Easy to add more languages
+
+## 📋 Requirements
+
+- **OS**: AlmaLinux 8/9, CentOS 7/8, Rocky Linux 8/9
+- **Control Panel**: CentOS Web Panel (CWP)
+- **Memory**: Minimum 1GB RAM
+- **Disk**: 2GB free space
+- **Access**: Root privileges
+
+## 🖥️ Usage
+
+### Access the Module
+
+After installation, access your CWP panel:
+
+1. Navigate to `http://YOUR_SERVER_IP:2030`
+2. Login with your admin credentials
+3. Go to **Security → ImunifyAV Scanner**
+
+### Quick Scan
+
+```bash
+# Via command line
 imunify-antivirus malware on-demand start --path=/home
 
-# Перевірка статусу
-imunify-antivirus malware on-demand status
-
-# Список інфікованих файлів
-imunify-antivirus malware malicious list
-
-# Очищення файлу
-imunify-antivirus malware cleanup --ids=FILE_ID
-
-# Оновлення бази даних
-imunify-antivirus update malware-database
+# Via API
+curl -X POST "http://YOUR_SERVER:2030/api/api_imunifyav.php" \
+  -d "action=scan" \
+  -d "key=YOUR_API_KEY" \
+  -d "path=/home" \
+  -d "type=quick"
 ```
 
-## Налаштування
+## 🔌 API
 
-### Конфігураційні файли
+The module includes a full REST API for automation:
 
-- `/etc/sysconfig/imunify360/whitelist.json` - білий список
-- `/var/log/imunifyav_cwp/schedule.json` - розклад сканувань
-- `/var/log/imunifyav_cwp/reports/` - збережені звіти
-
-### Логи
-
-- `/var/log/imunify360/` - логи ImunifyAV
-- `/var/log/imunifyav_cwp/` - логи модуля
-- `/usr/local/cwpsrv/logs/error_log` - логи CWP
-
-## Усунення неполадок
-
-### Модуль не відображається в меню
+### Example: Get System Status
 
 ```bash
-# Перевірте файл меню
+curl "http://YOUR_SERVER:2030/api/api_imunifyav.php?action=status&key=YOUR_API_KEY"
+```
+
+### Example: Start Scan
+
+```python
+import requests
+
+response = requests.post('http://YOUR_SERVER:2030/api/api_imunifyav.php', data={
+    'action': 'scan',
+    'key': 'YOUR_API_KEY',
+    'path': '/home',
+    'type': 'quick'
+})
+```
+
+[Full API Documentation](docs/API.md)
+
+## 🛠️ Management Commands
+
+After installation, these commands are available:
+
+```bash
+# Test module functionality
+imunifyav_test
+
+# Backup configuration
+imunifyav_backup
+
+# Uninstall module
+imunifyav_uninstall
+```
+
+## 📁 Repository Structure
+
+```
+imunifyav_cwp/
+├── install.sh                 # One-line installer
+├── scripts/                   # Installation & utility scripts
+├── modules/                   # CWP module files
+├── api/                      # REST API
+├── languages/                # Localization files
+└── docs/                     # Documentation
+```
+
+## 🔧 Manual Installation
+
+If you prefer manual installation:
+
+```bash
+# Clone repository
+git clone https://github.com/hostprotestm-tech/imunifyav_cwp.git
+cd imunifyav_cwp
+
+# Run installer
+chmod +x install.sh
+./install.sh
+```
+
+## 📊 Screenshots
+
+<details>
+<summary>View Screenshots</summary>
+
+### Main Dashboard
+![Dashboard](https://via.placeholder.com/800x400?text=Dashboard+Screenshot)
+
+### Scan Interface
+![Scanner](https://via.placeholder.com/800x400?text=Scanner+Screenshot)
+
+### Reports
+![Reports](https://via.placeholder.com/800x400?text=Reports+Screenshot)
+
+</details>
+
+## 🐛 Troubleshooting
+
+### Module not showing in menu?
+
+```bash
+# Check menu file
 cat /usr/local/cwpsrv/htdocs/resources/admin/include/3rdparty.php
 
-# Додайте вручну якщо відсутній
-echo '<li><a href="index.php?module=imunifyav"><span class="icon16 icomoon-icon-shield"></span>ImunifyAV Scanner</a></li>' >> /usr/local/cwpsrv/htdocs/resources/admin/include/3rdparty.php
+# Restart CWP
+systemctl restart cwpsrv
 ```
 
-### ImunifyAV не встановлений
+### ImunifyAV not starting?
 
 ```bash
-# Встановіть вручну
-cd /tmp
-wget https://repo.imunify360.cloudlinux.com/defence360/imav-deploy.sh
-chmod +x imav-deploy.sh
-bash imav-deploy.sh --license-free
+# Check service status
+systemctl status imunify-antivirus
+
+# Check logs
+tail -f /var/log/imunify360/console.log
 ```
 
-### Помилки прав доступу
+### Permission issues?
 
 ```bash
-# Виправте права доступу
-chown -R cwpsrv:cwpsrv /var/log/imunifyav_cwp/
-chmod 755 /var/log/imunifyav_cwp/
+# Fix permissions
+chown -R cwpsrv:cwpsrv /var/log/imunifyav_cwp
+chmod 755 /var/log/imunifyav_cwp
 ```
 
-## Деінсталяція
+[Full Troubleshooting Guide](docs/TROUBLESHOOTING.md)
 
-### Видалення модуля
+## 📝 Documentation
 
-```bash
-/usr/local/bin/uninstall_imunifyav_module.sh
-```
+- [Installation Guide](docs/INSTALL.md)
+- [API Documentation](docs/API.md)
+- [Configuration Guide](docs/CONFIG.md)
+- [Changelog](docs/CHANGELOG.md)
 
-### Повне видалення (включаючи ImunifyAV)
+## 🤝 Contributing
 
-```bash
-# Видалити модуль
-/usr/local/bin/uninstall_imunifyav_module.sh
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-# Видалити ImunifyAV
-imunify-antivirus uninstall
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-# Очистити залишки
-rm -rf /etc/sysconfig/imunify360
-rm -rf /var/log/imunify360
-```
+## 📜 License
 
-## Безпека
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-- Модуль працює з правами cwpsrv користувача
-- Всі AJAX запити перевіряють сесію адміністратора
-- Критичні операції вимагають підтвердження
-- Логи зберігаються для аудиту
+## ⚠️ Disclaimer
 
-## Обмеження безкоштовної версії
+This is an unofficial module for CWP. ImunifyAV is a product of CloudLinux Inc. This module uses the free version of ImunifyAV. For advanced features, consider purchasing ImunifyAV+.
 
-ImunifyAV Free має наступні обмеження:
-- Тільки сканування на вимогу (без real-time захисту)
-- Обмежена кількість очищень на день
-- Базовий набір сигнатур
-- Немає автоматичного очищення
+## 💬 Support
 
-Для розширеного функціоналу розгляньте ImunifyAV+.
+- **Issues**: [GitHub Issues](https://github.com/hostprotestm-tech/imunifyav_cwp/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/hostprotestm-tech/imunifyav_cwp/discussions)
+- **Email**: support@hostprotestm-tech.com
 
-## Підтримка та розвиток
+## 🌟 Star History
 
-### Відомі проблеми
-- Великі каталоги можуть сканувати довго
-- Необхідно вручну оновлювати бази даних
+[![Star History Chart](https://api.star-history.com/svg?repos=hostprotestm-tech/imunifyav_cwp&type=Date)](https://star-history.com/#hostprotestm-tech/imunifyav_cwp&Date)
 
-### Плани розвитку
-- [ ] Інтеграція з email сповіщеннями
-- [ ] Графіки статистики загроз
-- [ ] Автоматичне резервне копіювання перед очищенням
-- [ ] API для інтеграції з іншими системами
-- [ ] Підтримка кількох мов
+## 👏 Credits
 
-## Внесок у проект
-
-Будемо раді вашим пропозиціям та покращенням:
-1. Fork репозиторій
-2. Створіть гілку для вашої функції
-3. Commit зміни
-4. Push в гілку
-5. Створіть Pull Request
-
-## Ліцензія
-
-Цей модуль розповсюджується під ліцензією MIT.
-ImunifyAV є власністю CloudLinux Inc.
-
-## Автор
-
-Розроблено для інтеграції ImunifyAV з CentOS Web Panel.
-
-## Контакти
-
-Для питань та пропозицій створюйте Issue в репозиторії проекту.
+- Developed by [hostprotestm-tech](https://github.com/hostprotestm-tech)
+- ImunifyAV by [CloudLinux](https://www.imunify360.com/)
+- CWP by [CentOS Web Panel](http://centos-webpanel.com/)
 
 ---
 
-**Версія**: 1.0  
-**Оновлено**: 2025  
-**Сумісність**: CWP 0.9.8.1147+, AlmaLinux 8/9
+<div align="center">
+
+**If you find this module useful, please ⭐ star the repository!**
+
+Made with ❤️ for the CWP community
+
+</div>
